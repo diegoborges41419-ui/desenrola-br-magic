@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AtendimentoRouteImport } from './routes/atendimento'
 import { Route as CpfRouteImport } from './routes/cpf'
 import { Route as PreRouteImport } from './routes/pre'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtendimentoRoute = AtendimentoRouteImport.update({
+  id: '/atendimento',
+  path: '/atendimento',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CpfRoute = CpfRouteImport.update({
@@ -31,30 +37,34 @@ const PreRoute = PreRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
   '/cpf': typeof CpfRoute
   '/pre': typeof PreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
   '/cpf': typeof CpfRoute
   '/pre': typeof PreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
   '/cpf': typeof CpfRoute
   '/pre': typeof PreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cpf' | '/pre'
+  fullPaths: '/' | '/atendimento' | '/cpf' | '/pre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cpf' | '/pre'
-  id: '__root__' | '/' | '/cpf' | '/pre'
+  to: '/' | '/atendimento' | '/cpf' | '/pre'
+  id: '__root__' | '/' | '/atendimento' | '/cpf' | '/pre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtendimentoRoute: typeof AtendimentoRoute
   CpfRoute: typeof CpfRoute
   PreRoute: typeof PreRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atendimento': {
+      id: '/atendimento'
+      path: '/atendimento'
+      fullPath: '/atendimento'
+      preLoaderRoute: typeof AtendimentoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cpf': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtendimentoRoute: AtendimentoRoute,
   CpfRoute: CpfRoute,
   PreRoute: PreRoute,
 }
