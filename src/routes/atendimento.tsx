@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-type AtendimentoSearch = { cpf?: string };
+type AtendimentoSearch = { cpf: string };
 
 export const Route = createFileRoute("/atendimento")({
   validateSearch: (search: Record<string, unknown>): AtendimentoSearch => ({
-    cpf: typeof search.cpf === "string" ? search.cpf : undefined,
+    cpf: typeof search["cpf"] === "string" ? search["cpf"] : "",
   }),
+
   head: () => ({
     meta: [
       { title: "Atendimento — Desenrola Brasil" },
