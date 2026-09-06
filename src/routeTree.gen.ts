@@ -10,63 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AtendimentoRouteImport } from './routes/atendimento'
-import { Route as CpfRouteImport } from './routes/cpf'
-import { Route as PreRouteImport } from './routes/pre'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AtendimentoRoute = AtendimentoRouteImport.update({
-  id: '/atendimento',
-  path: '/atendimento',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CpfRoute = CpfRouteImport.update({
-  id: '/cpf',
-  path: '/cpf',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PreRoute = PreRouteImport.update({
-  id: '/pre',
-  path: '/pre',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/atendimento': typeof AtendimentoRoute
-  '/cpf': typeof CpfRoute
-  '/pre': typeof PreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/atendimento': typeof AtendimentoRoute
-  '/cpf': typeof CpfRoute
-  '/pre': typeof PreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/atendimento': typeof AtendimentoRoute
-  '/cpf': typeof CpfRoute
-  '/pre': typeof PreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/atendimento' | '/cpf' | '/pre'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/atendimento' | '/cpf' | '/pre'
-  id: '__root__' | '/' | '/atendimento' | '/cpf' | '/pre'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AtendimentoRoute: typeof AtendimentoRoute
-  CpfRoute: typeof CpfRoute
-  PreRoute: typeof PreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -78,35 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/atendimento': {
-      id: '/atendimento'
-      path: '/atendimento'
-      fullPath: '/atendimento'
-      preLoaderRoute: typeof AtendimentoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cpf': {
-      id: '/cpf'
-      path: '/cpf'
-      fullPath: '/cpf'
-      preLoaderRoute: typeof CpfRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pre': {
-      id: '/pre'
-      path: '/pre'
-      fullPath: '/pre'
-      preLoaderRoute: typeof PreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AtendimentoRoute: AtendimentoRoute,
-  CpfRoute: CpfRoute,
-  PreRoute: PreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
