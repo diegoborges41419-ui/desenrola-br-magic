@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/pre")({
   head: () => ({
@@ -53,12 +53,12 @@ function Index() {
             Clique no botão abaixo para acessar a plataforma
           </p>
 
-          <a
-            href="https://desenrolasbr2026.com/cpf"
+          <Link
+            to="/cpf"
             className="mt-8 block w-full rounded-xl bg-primary px-6 py-4 text-xl font-bold tracking-wide text-primary-foreground transition-colors hover:bg-primary/90"
           >
             ACESSAR AGORA
-          </a>
+          </Link>
         </div>
       </main>
 
