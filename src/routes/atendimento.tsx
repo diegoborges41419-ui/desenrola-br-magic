@@ -27,7 +27,7 @@ export const Route = createFileRoute("/atendimento")({
   component: AtendimentoPage,
 });
 
-function maskCpf(cpf?: string) {
+function maskCpf(cpf: string) {
   if (!cpf || cpf.length !== 11) return "—";
   return `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}`;
 }
